@@ -8,8 +8,12 @@ using UnityEngine;
 
 public class CheatCodes : MonoBehaviour
 {
+	private static bool gravityCheat;
+	private static Vector3 gravityReal;
+	
 	private void Start()
 	{
+		CheatCodes.gravityReal = Physics.gravity;
 		Shell.RegisterCommand("gravity", new Action<string>(this.CGravity), null);
 		Shell.RegisterCommand("mod", new Action(this.modInfo), null);
 	}
@@ -18,49 +22,26 @@ public class CheatCodes : MonoBehaviour
 	{
 		Shell.Print("Gravity Mod by TBM");
 		Shell.Print("Version: 1.1");
-		Shell.Print("To activate/deactivate the mod, type gravity <value> on console. Value (optional) can be from 0 to 5.");
+		Shell.Print("To activate/deactivate the mod, type gravity <value> in console.");
 	}
   
 	private void CGravity(string txt)
 	{
-		if (CheatCodes.gravityS && string.IsNullOrEmpty(txt))
+		if (CheatCodes.gravityCheat && (string.IsNullOrEmpty(txt) || txt.ToLower() == "false" || txt.ToLower() == "off" || txt.ToLower() == "disable")
 		{
-			Physics.gravity = CheatCodes.gravityV;
-			CheatCodes.gravityS = false;
+			Physics.gravity = CheatCodes.gravityReal;
+			CheatCodes.gravityCheat = false;
 			Shell.Print("Gravity mod disabled");
 			return;
 		}
-		float y = -3f;
-		if (txt == "0")
+		float newGravity;
+		if (Single.TryParse(txt, out newGravity)) //TryParse returns true if txt is a number, and sets newGravity to that number
 		{
-			y = -0.1f;
-		}
-		else if (txt == "1")
-		{
-			y = -1f;
-		}
-		else if (txt == "2")
-		{
-			y = -2f;
-		}
-		else if (txt == "4")
-		{
-			y = -4f;
-		}
-		else if (txt == "5")
-		{
-			y = -5f;
+			Physics.gravity = new Vector3(0.0f, -newGravity, 0.0f);
+			CheatCodes.gravityCheat = true;
+			Shell.Print("Gravity changed to " + txt);
 		}
 		else
-		{
-			txt = "3";
-		}
-		Physics.gravity = new Vector3(0f, y, 0f);
-		CheatCodes.gravityS = true;
-		Shell.Print("Gravity changed to " + txt);
+			Shell.Print("Error: Argument is non-numeric");
 	}
-
-	private static bool gravityS;
-
-	private static Vector3 gravityV = Physics.gravity;
 }
