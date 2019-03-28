@@ -20,14 +20,15 @@ public class CheatCodes : MonoBehaviour
 
 	private void modInfo()
 	{
-		Shell.Print("Gravity Mod by TBM");
-		Shell.Print("Version: 1.1");
+		Shell.Print("Gravity Mod v1.2");
 		Shell.Print("To activate/deactivate the mod, type gravity <value> in console.");
+		Shell.Print("Contributors:");
+		Shell.Print("TBM 16 and Permamiss");
 	}
   
 	private void CGravity(string txt)
 	{
-		if (CheatCodes.gravityCheat && (string.IsNullOrEmpty(txt) || txt.ToLower() == "false" || txt.ToLower() == "off" || txt.ToLower() == "disable")
+		if (CheatCodes.gravityCheat && (string.IsNullOrEmpty(txt) || txt.ToLower() == "false" || txt.ToLower() == "off" || txt.ToLower() == "disable"))
 		{
 			Physics.gravity = CheatCodes.gravityReal;
 			CheatCodes.gravityCheat = false;
