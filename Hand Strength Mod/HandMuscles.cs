@@ -13,19 +13,19 @@ public class HandMuscles
 {
   public float maxHorizontalForce = 750f;
   
-	public float maxVertialForce = 1500f;
+  public float maxVertialForce = 1500f;
   
   public float grabMaxHorizontalForce = 750f;
 
-	public float grabMaxVertialForce = 1500f;
+  public float grabMaxVertialForce = 1500f;
   
   public float maxPushForce = 600f;
   
   public float maxForce = 900f;
 
-	public float grabMaxForce = 1350f;
+  public float grabMaxForce = 1350f;
   
   public float maxStopForce = 450f;
 
-	public float grabMaxStopForce = 1500f;
+  public float grabMaxStopForce = 1500f;
 }
