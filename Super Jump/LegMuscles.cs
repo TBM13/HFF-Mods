@@ -1,4 +1,4 @@
-//File path: Assembly-CSharp.dll/-/HumanHead.cs
+//File path: Assembly-CSharp.dll/-/LegMuscles.cs
 //Only code added/modified by the mod is here.
 
 using System;
