@@ -9,13 +9,13 @@ using UnityEngine;
 public class CheatCodes : MonoBehaviour
 {
 	
-	private void Start()
-	{
-		Shell.RegisterCommand("unlockachievements", new Action(UnlockAchievements), "unlockachievements\r\nUnlocks all HFF achievements");
-	}
+    private void Start()
+    {
+        Shell.RegisterCommand("unlockachievements", new Action(UnlockAchievements), "unlockachievements\r\nUnlocks all HFF achievements");
+    }
   
-	private void UnlockAchievements()
-	{
+    private void UnlockAchievements()
+    {
         StatsAndAchievements.UnlockAchievement(Achievement.ACH_AZTEC_CLOCWORK, false, -1);
         StatsAndAchievements.UnlockAchievement(Achievement.ACH_AZTEC_INDIANA, false, -1);
         StatsAndAchievements.UnlockAchievement(Achievement.ACH_AZTEC_OVERLOOK, false, -1);
