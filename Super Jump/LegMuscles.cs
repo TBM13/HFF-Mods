@@ -9,6 +9,6 @@ public partial class LegMuscles
 {
   private void JumpAnimation(Vector3 torsoFeedback)
   {
-    upImpulse = ((Mathf.Sqrt(4f / Physics.gravity.magnitude) * human.weight) - momentum.y) * 5f;
+    upImpulse = ((Mathf.Sqrt(4f / Physics.gravity.magnitude) * human.weight) - momentum.y) * CheatCodes.jumpImpulse;
   }
 }
