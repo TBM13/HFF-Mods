@@ -1,5 +1,5 @@
 //File path: Assembly-CSharp.dll/-/CheatCodes.cs
-//Only mod code is here, NOT game code.
+//Only code added/modified by the mod is here.
 
 using System;
 using I2.Loc;
@@ -8,41 +8,32 @@ using UnityEngine;
 
 public class CheatCodes : MonoBehaviour
 {
-	private static bool gravityCheat;
-	private static Vector3 gravityReal;
-	
-	private void Start()
-	{
-		CheatCodes.gravityReal = Physics.gravity;
-		Shell.RegisterCommand("gravity", new Action<string>(this.CGravity), null);
-		Shell.RegisterCommand("mod", new Action(this.modInfo), null);
-	}
+    private static Vector3 gravityReal;
 
-	private void modInfo()
-	{
-		Shell.Print("Gravity Mod v1.2");
-		Shell.Print("To activate/deactivate the mod, type gravity <value> in console.");
-		Shell.Print("Contributors:");
-		Shell.Print("TBM 16 and Permamiss");
-	}
-  
-	private void CGravity(string txt)
-	{
-		if (CheatCodes.gravityCheat && (string.IsNullOrEmpty(txt) || txt.ToLower() == "false" || txt.ToLower() == "off" || txt.ToLower() == "disable"))
-		{
-			Physics.gravity = CheatCodes.gravityReal;
-			CheatCodes.gravityCheat = false;
-			Shell.Print("Gravity mod disabled");
-			return;
-		}
-		float newGravity;
-		if (Single.TryParse(txt, out newGravity)) //TryParse returns true if txt is a number, and sets newGravity to that number
-		{
-			Physics.gravity = new Vector3(0.0f, -newGravity, 0.0f);
-			CheatCodes.gravityCheat = true;
-			Shell.Print("Gravity changed to " + txt);
-		}
-		else
-			Shell.Print("Error: Argument is non-numeric");
-	}
+    private void Start()
+    {
+        CheatCodes.gravityReal = Physics.gravity;
+        Shell.RegisterCommand("gravity", new Action<string>(this.CGravity), "gravity [gravityValue]\r\nSets the gravity to the specified value\r\n\t[gravityValue] - Gravity value, e.g. 0-No Gravity, 3-Low Gravity, -1-Inverted gravity, etc\r\n\tIf no gravityValue is specified, the gravity will be restored to its default value.");
+        Shell.RegisterCommand("gravitymod", new Action<string>(this.CGravity), "gravitymod [gravityValue]\r\nSets the gravity to the specified value\r\n\t[gravityValue] - Gravity value, e.g. 0-No Gravity, 3-Low Gravity, -1-Inverted gravity, etc\r\n\tIf no gravityValue is specified, the gravity will be restored to its default value.");
+    }
+
+    private void CGravity(string txt)
+    {
+        if (Physics.gravity != CheatCodes.gravityReal && (string.IsNullOrEmpty(txt) || txt.ToLower() == "false" || txt.ToLower() == "off" || txt.ToLower() == "disable"))
+        {
+            Physics.gravity = CheatCodes.gravityReal;
+            Shell.Print("Gravity mod disabled");
+        }
+        else
+        {
+            float newGravity;
+            if (Single.TryParse(txt, out newGravity)) //TryParse returns true if txt is a number, and sets newGravity to that number
+            {
+                Physics.gravity = new Vector3(0.0f, -newGravity, 0.0f);
+                Shell.Print("Gravity changed to " + txt);
+            }
+            else
+                Shell.Print("Error: Argument is non-numeric");
+        }
+    }
 }
