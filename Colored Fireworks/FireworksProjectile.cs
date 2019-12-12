@@ -9,7 +9,7 @@ public class FireworksProjectile : MonoBehaviour, INetBehavior
 	{
 		if (this.customColor == Color.clear)
 		{
-			int colorResult = new System.Random().Next(0, 6);
+			int colorResult = new System.Random().Next(0, 7);
 			if (colorResult == 0)
 				this.customColor = Color.yellow;
 			else if (colorResult == 1)
