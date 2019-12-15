@@ -14,7 +14,6 @@ public class CheatCodes : MonoBehaviour
     {
         CheatCodes.gravityReal = Physics.gravity;
         Shell.RegisterCommand("gravity", new Action<string>(this.CGravity), "gravity [gravityValue]\r\nSets the gravity to the specified value\r\n\t[gravityValue] - Gravity value, e.g. 0-No Gravity, 3-Low Gravity, -1-Inverted gravity, etc\r\n\tIf no gravityValue is specified, the gravity will be restored to its default value.");
-        Shell.RegisterCommand("gravitymod", new Action<string>(this.CGravity), "gravitymod [gravityValue]\r\nSets the gravity to the specified value\r\n\t[gravityValue] - Gravity value, e.g. 0-No Gravity, 3-Low Gravity, -1-Inverted gravity, etc\r\n\tIf no gravityValue is specified, the gravity will be restored to its default value.");
     }
 
     private void CGravity(string txt)

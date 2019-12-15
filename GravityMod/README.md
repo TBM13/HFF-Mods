@@ -3,9 +3,9 @@ ___
 
 #### Usage:
 
-`gravitymod [gravityValue]` or `gravity [gravityValue]`
+`gravity [gravityValue]`
 
 (replace `[gravityValue]` with the value you want)
 
 
-If you want to disable the mod type `gravitymod` or `gravity`, without any argument.
+If you want to disable the mod type `gravity`, without any argument.
